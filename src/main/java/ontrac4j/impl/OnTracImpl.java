@@ -2,9 +2,9 @@ package ontrac4j.impl;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -37,17 +37,19 @@ public class OnTracImpl implements OnTrac {
     private final String account;
     private final String password;
     
-    public OnTracImpl(String account, String password, String rootUrl) {
+    private OnTracImpl(String account, String password, String rootUrl) {
         this.account = account;
         this.password = password;
         this.rootUrl = rootUrl;
     }
-    
-    public List<ZipCode> getZipCodes() throws IOException {
+
+    /** {@inheritDoc} */
+    public Map<String,ZipCode> getZipCodes() throws IOException {
         return getZipCodes(null);
     }
     
-    public List<ZipCode> getZipCodes(Date lastUpdate) throws IOException {
+    /** {@inheritDoc} */
+    public Map<String,ZipCode> getZipCodes(Date lastUpdate) throws IOException {
         String url = rootUrl + "/V1/" + account + "/Zips?pw=" + password;
         if (lastUpdate != null) {
             url += "&lastUpdate=" + LAST_UPDATE_FORMAT.format(lastUpdate);
@@ -56,15 +58,15 @@ public class OnTracImpl implements OnTrac {
         if (StringUtils.isNotBlank(zipCodeList.getError())) {
             throw new GeneralException(zipCodeList.getError());
         }
-        List<ZipCode> zipCodes = new ArrayList<>(zipCodeList.getZips().getZip().size());
+        Map<String,ZipCode> map = new LinkedHashMap<>();
         for (ontrac4j.xml.ZipCode zipCode : zipCodeList.getZips().getZip()) {
-            zipCodes.add(new ZipCode(zipCode));
+            map.put(zipCode.getZipCode(), new ZipCode(zipCode));
         }
-        return zipCodes;
+        return map;
     }
 
     @SuppressWarnings("unchecked")
-    static <T> T unmarshal(String url, Class<T> clazz) throws IOException {
+    private static <T> T unmarshal(String url, Class<T> clazz) throws IOException {
         try {
             Object obj = UNMARSHALLER.unmarshal(new URL(url).openStream());
             if (obj instanceof JAXBElement) {
