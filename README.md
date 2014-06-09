@@ -1,7 +1,7 @@
 ontrac4j
 ========
 
-Java client library for OnTrac's shipping API
+Java client library for use with OnTrac's shipping API
 
 http://www.ontrac.com
 apisupport@ontrac.com
