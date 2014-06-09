@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
 
 import ontrac4j.OnTrac;
-import ontrac4j.ZipCode;
+import ontrac4j.xml.ZipCode;
 import ontrac4j.xml.ZipCodeList;
 
 public class OnTracImpl implements OnTrac {
@@ -59,8 +59,8 @@ public class OnTracImpl implements OnTrac {
             throw new GeneralException(zipCodeList.getError());
         }
         Map<String,ZipCode> map = new LinkedHashMap<>();
-        for (ontrac4j.xml.ZipCode zipCode : zipCodeList.getZips().getZip()) {
-            map.put(zipCode.getZipCode(), new ZipCode(zipCode));
+        for (ZipCode zipCode : zipCodeList.getZips().getZip()) {
+            map.put(zipCode.getZipCode(), zipCode);
         }
         return map;
     }

@@ -11,6 +11,8 @@ import java.util.Map;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 
+import ontrac4j.xml.ZipCode;
+
 public class ZipCodesTest extends BaseTest {
     @Test
     public void getZipCodes() throws IOException {
@@ -18,7 +20,7 @@ public class ZipCodesTest extends BaseTest {
         System.out.println("# of ZipCodes: " + zipCodes.size());
         ZipCode sfzip = zipCodes.get("94123");
         assertNotNull(sfzip);
-        assertTrue(sfzip.isPickupServiced());
+        assertTrue(sfzip.getPickupServiced() == 1);
     }
     
     @Test
