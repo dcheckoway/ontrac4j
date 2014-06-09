@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="OnTracPickupResponse" type="PickupResponse" nillable="true"/>
+	<xs:complexType name="PickupResponse">
+		<xs:sequence>
+			<xs:element name="Tracking" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Error" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

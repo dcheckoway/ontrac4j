@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OnTracZipResponse" nillable="true" type="ZipCodeList" />
+  <xs:complexType name="ZipCodeList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Zips" type="ArrayOfZipCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Error" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfZipCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Zip" nillable="true" type="ZipCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ZipCode">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="zipCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="saturdayServiced" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="pickupServiced" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="palletizedServiced" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sortCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="OnTracTrackingResult" type="TrackingShipmentList" nillable="true"/>
+	<xs:complexType name="TrackingShipmentList">
+		<xs:sequence>
+			<xs:element name="Shipments" type="ArrayOfTrackingShipment" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Note" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Logo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Error" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfTrackingShipment">
+		<xs:sequence>
+			<xs:element name="Shipment" type="TrackingShipment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TrackingShipment">
+		<xs:sequence>
+			<xs:element name="Events" type="History" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Tracking" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Exp_Del_Date" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ShipDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Delivered" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Contact" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Addr1" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Addr2" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Addr3" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="City" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="State" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Zip" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Service" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="POD" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Error" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Reference" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Reference2" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Reference3" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ServiceCharge" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="FuelCharge" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="TotalChrg" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Residential" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Weight" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Signature" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="History">
+		<xs:sequence>
+			<xs:element name="Event" type="Event" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Event">
+		<xs:sequence>
+			<xs:element name="Status" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Description" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="EventTime" type="xs:dateTime"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Facility" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="City" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="State" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Zip" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

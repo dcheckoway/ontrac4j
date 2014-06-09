@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="OnTracShipmentRequest" type="ShipmentRequestList" nillable="true"/>
+	<xs:complexType name="ShipmentRequestList">
+		<xs:sequence>
+			<xs:element name="Shipments" type="ArrayOfShipmentRequest" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfShipmentRequest">
+		<xs:sequence>
+			<xs:element name="Shipment" type="ShipmentRequest" nillable="true" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ShipmentRequest">
+    <xs:all>
+			<xs:element name="UID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="shipper" type="Shipper" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="consignee" type="Consignee" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Service" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SignatureRequired" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Residential" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SaturdayDel" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Declared" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="COD" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="CODType" type="codType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Weight"  minOccurs="1" maxOccurs="1">      
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="99999"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+			<xs:element name="Letter" type="xs:int" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="BillTo" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Instructions" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Reference" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Reference2" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Reference3" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Tracking" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DIM" type="Dim" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="LabelType" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ShipEmail" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DelEmail" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ShipDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="Shipper">
+    <xs:all>
+			<xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Addr1" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="City" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="State" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Zip" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Contact" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Phone" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="Consignee">
+    <xs:all>
+			<xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Addr1" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Addr2" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Addr3" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="City" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="State" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Zip" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Contact" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Phone" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="codType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="SECURED"/>
+			<xs:enumeration value="UNSECURED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Dim">
+    <xs:all>
+			<xs:element name="Length" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Width" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Height" type="xs:double" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

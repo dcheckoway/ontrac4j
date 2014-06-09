@@ -10,8 +10,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jdk.version>1.8</jdk.version>
     <junit.version>4.11</junit.version>
+    <commons-collections.version>3.2.1</commons-collections.version>
     <org.apache.commons.commons-lang3.version>3.3.2</org.apache.commons.commons-lang3.version>
-    <org.springframework.version>4.0.5.RELEASE</org.springframework.version>
     <org.apache.maven.plugins.maven-compiler-plugin.version>3.0</org.apache.maven.plugins.maven-compiler-plugin.version>
   </properties>
   
@@ -25,9 +25,9 @@
     <!-- ============================ COMPILE ============================== -->
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context-support</artifactId>
-      <version>${org.springframework.version}</version>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>${commons-collections.version}</version>
       <scope>compile</scope>
     </dependency>
     

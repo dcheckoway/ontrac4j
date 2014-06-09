@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="OnTracRateResponse" type="RateShipmentList" nillable="true"/>
+	<xs:complexType name="RateShipmentList">
+		<xs:sequence>
+			<xs:element name="Shipments" type="ArrayOfRateShipment" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Error" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfRateShipment">
+		<xs:sequence>
+			<xs:element name="Shipment" type="RateShipment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RateShipment">
+		<xs:sequence>
+			<xs:element name="Rates" type="ArrayOfRateQuote" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="UID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Delzip" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PUZip" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Declared" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Residential" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="COD" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SaturdayDel" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Weight" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DIM" type="Dim" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Error" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfRateQuote">
+		<xs:sequence>
+			<xs:element name="Rate" type="RateQuote" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RateQuote">
+		<xs:sequence>
+			<xs:element name="Service" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ServiceCharge" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="FuelCharge" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="TotalCharge" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="TransitDays" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="GlobalRate" type="xs:double" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+    <!--
+	<xs:complexType name="Dim">
+		<xs:sequence>
+			<xs:element name="Length" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Width" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Height" type="xs:double" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+    -->
+</xs:schema>

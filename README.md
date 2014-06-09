@@ -15,6 +15,6 @@ Test Environment Usage:
 
 `OnTrac client = OnTrac.builder().test().account("37").password("testpass").build();`
 
-JAXB/XML mappings generated from the XSD files supplied by OnTrac via:
+JAXB/XML mappings were generated from the XSD files supplied by OnTrac by first commenting out the "Dim" type in OnTracRateResponse.xml (there were two, which caused duplicate issues with XJC), and then running:
 
-`xjc -d src/main/java -p ontrac4j.xml -verbose <xsdFile>`
+`xjc -extension xsd/simpleMode.xsd -d src/main/java -p ontrac4j.xml -verbose xsd/OnTrac*.xsd`

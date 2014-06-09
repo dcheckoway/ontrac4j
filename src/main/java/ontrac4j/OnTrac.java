@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.Map;
 
 import ontrac4j.impl.OnTracImpl;
+import ontrac4j.xml.ShipmentRequest;
+import ontrac4j.xml.ShipmentResponse;
+import ontrac4j.xml.TrackingShipment;
 import ontrac4j.xml.ZipCode;
 
 /**
@@ -23,6 +26,20 @@ public interface OnTrac {
      * @return only zips that have been added or changed since lastUpdate
      */
     Map<String,ZipCode> getZipCodes(Date lastUpdate) throws IOException;
+
+    /**
+     * Create a new shipment
+     * @param shipmentRequest the shipment request details to create
+     * @return the shipment response
+     */
+    ShipmentResponse createShipment(ShipmentRequest shipmentRequest) throws IOException;
+
+    /**
+     * Track a shipment
+     * @param trackingNumber the tracking number of the shipment to track
+     * @return the tracking details for the shipment
+     */
+    TrackingShipment trackShipment(String trackingNumber) throws IOException;
 
     /**
      * Builder interface used to build OnTrac instances
