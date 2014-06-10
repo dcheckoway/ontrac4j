@@ -40,8 +40,6 @@ public class CreateShipmentTest extends BaseTest {
         Consignee consignee = new Consignee();
         consignee.setName("Staples Center");
         consignee.setAddr1("1111 S Figueroa St.");
-        consignee.setAddr2("");
-        consignee.setAddr3("");
         consignee.setCity("Los Angeles");
         consignee.setState("CA");
         consignee.setZip("90015");
@@ -72,9 +70,6 @@ public class CreateShipmentTest extends BaseTest {
         shipmentRequest.setBillTo(0);
         shipmentRequest.setInstructions("Leave at front desk");
         shipmentRequest.setReference(reference);
-        shipmentRequest.setReference2("");
-        shipmentRequest.setReference3("");
-        shipmentRequest.setTracking("");
         shipmentRequest.setDIM(dim);
         shipmentRequest.setLabelType(0);
         shipmentRequest.setShipEmail("dcheckoway@gmail.com;dan@sunbasket.com");

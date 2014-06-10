@@ -38,7 +38,6 @@ public class PickupTest extends BaseTest {
         pickupRequest.setState("CA");
         pickupRequest.setZip("90069");
         pickupRequest.setDelZip("94111");
-        pickupRequest.setInstructions("");
         pickupRequest.setPhone("310-555-1212");
         pickupRequest.setContact("Joe Schmoe");
         String trackingNumber = ontrac().schedulePickup(pickupRequest);

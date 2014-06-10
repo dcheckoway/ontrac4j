@@ -3,6 +3,8 @@ package ontrac4j.impl;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -14,6 +16,8 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -97,6 +101,8 @@ public class Client {
     }
 
     private <T> String marshal(Object object) throws IOException {
+        populateDefaultValues(object);
+        
         StringWriter stringWriter = new StringWriter();
         try {
             getMarshaller(object).marshal(object, stringWriter);
@@ -145,5 +151,47 @@ public class Client {
             }
         }
         return marshaller;
+    }
+
+    private static void populateDefaultValues(Object object) {
+        Object target = object instanceof JAXBElement ? ((JAXBElement)object).getValue() : object;
+        if (target == null) {
+            return;
+        }
+        Class<?> clazz = target.getClass();
+        XmlType xmlType = clazz.getDeclaredAnnotation(XmlType.class);
+        if (xmlType != null) {
+            for (Field field : clazz.getDeclaredFields()) {
+                XmlElement xmlElement = field.getAnnotation(XmlElement.class);
+                if (xmlElement != null) {
+                    if (!field.isAccessible()) {
+                        field.setAccessible(true);
+                    }
+                    Object fieldValue;
+                    try {
+                        fieldValue = field.get(target);
+                    } catch (IllegalAccessException e) {
+                        throw new IllegalStateException("Failed to get value of " + field.getName() + " on  " + clazz.getName(), e);
+                    }
+
+                    if (fieldValue == null && xmlElement.required()) {
+                        LOG.fine("Setting required field \"" + field.getName() + "\" on " + clazz.getName() + " to default instance of " + field.getType().getName());
+                        try {
+                            fieldValue = field.getType().newInstance();
+                            field.set(target, fieldValue);
+                        } catch (IllegalAccessException | InstantiationException e) {
+                            throw new IllegalStateException("Failed to set default instance of " + field.getType().getName() + " as \"" + field.getName() + "\" on  " + clazz.getName(), e);
+                        }
+                    }
+                    
+                    // Walk down the hierarchy
+                    populateDefaultValues(fieldValue);
+                }
+            }
+        } else if (target instanceof Collection) {
+            for (Object element : ((Collection<?>)target)) {
+                populateDefaultValues(element);
+            }
+        }
     }
 }
