@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,16 +15,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for RateShipmentList complex type.
+ * <p>Java class for TrackingShipmentList complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="RateShipmentList">
+ * &lt;complexType name="TrackingShipmentList">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Shipments" type="{}ArrayOfRateShipment"/>
+ *         &lt;element name="Shipments" type="{}ArrayOfTrackingShipment" minOccurs="0"/>
+ *         &lt;element name="Note" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Logo" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Error" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -35,14 +37,20 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RateShipmentList", propOrder = {
+@XmlType(name = "TrackingShipmentList", propOrder = {
     "shipments",
+    "note",
+    "logo",
     "error"
 })
-public class RateShipmentList {
+public class TrackingShipmentList {
 
-    @XmlElement(name = "Shipments", required = true)
-    protected ArrayOfRateShipment shipments;
+    @XmlElement(name = "Shipments")
+    protected ArrayOfTrackingShipment shipments;
+    @XmlElement(name = "Note", required = true)
+    protected String note;
+    @XmlElement(name = "Logo", required = true)
+    protected String logo;
     @XmlElement(name = "Error", required = true)
     protected String error;
 
@@ -51,10 +59,10 @@ public class RateShipmentList {
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfRateShipment }
+     *     {@link ArrayOfTrackingShipment }
      *     
      */
-    public ArrayOfRateShipment getShipments() {
+    public ArrayOfTrackingShipment getShipments() {
         return shipments;
     }
 
@@ -63,11 +71,59 @@ public class RateShipmentList {
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfRateShipment }
+     *     {@link ArrayOfTrackingShipment }
      *     
      */
-    public void setShipments(ArrayOfRateShipment value) {
+    public void setShipments(ArrayOfTrackingShipment value) {
         this.shipments = value;
+    }
+
+    /**
+     * Gets the value of the note property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * Sets the value of the note property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNote(String value) {
+        this.note = value;
+    }
+
+    /**
+     * Gets the value of the logo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLogo() {
+        return logo;
+    }
+
+    /**
+     * Sets the value of the logo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLogo(String value) {
+        this.logo = value;
     }
 
     /**

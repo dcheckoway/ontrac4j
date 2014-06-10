@@ -10,18 +10,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
 
 import ontrac4j.OnTrac;
-import ontrac4j.xml.ArrayOfShipmentRequest;
-import ontrac4j.xml.ObjectFactory;
-import ontrac4j.xml.ShipmentRequest;
-import ontrac4j.xml.ShipmentRequestList;
-import ontrac4j.xml.ShipmentResponse;
-import ontrac4j.xml.ShipmentResponseList;
-import ontrac4j.xml.ShipmentUpdate;
-import ontrac4j.xml.ShipmentUpdateList;
-import ontrac4j.xml.TrackingShipment;
-import ontrac4j.xml.TrackingShipmentList;
-import ontrac4j.xml.ZipCode;
-import ontrac4j.xml.ZipCodeList;
+import ontrac4j.schema.ArrayOfShipmentRequest;
+import ontrac4j.schema.ObjectFactory;
+import ontrac4j.schema.ShipmentRequest;
+import ontrac4j.schema.ShipmentRequestList;
+import ontrac4j.schema.ShipmentResponse;
+import ontrac4j.schema.ShipmentResponseList;
+import ontrac4j.schema.ShipmentUpdate;
+import ontrac4j.schema.ShipmentUpdateList;
+import ontrac4j.schema.TrackingShipment;
+import ontrac4j.schema.TrackingShipmentList;
+import ontrac4j.schema.ZipCode;
+import ontrac4j.schema.ZipCodeList;
 
 public class OnTracImpl implements OnTrac {
     private static final FastDateFormat LAST_UPDATE_FORMAT = FastDateFormat.getInstance("yyyy-MM-dd");

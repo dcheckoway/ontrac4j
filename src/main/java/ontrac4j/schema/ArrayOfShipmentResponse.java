@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import java.util.ArrayList;
 import java.util.List;

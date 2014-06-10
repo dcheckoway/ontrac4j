@@ -12,14 +12,14 @@ import javax.xml.datatype.DatatypeFactory;
 
 import org.junit.Test;
 
-import ontrac4j.xml.CodType;
-import ontrac4j.xml.Consignee;
-import ontrac4j.xml.Dim;
-import ontrac4j.xml.Event;
-import ontrac4j.xml.ShipmentRequest;
-import ontrac4j.xml.ShipmentResponse;
-import ontrac4j.xml.Shipper;
-import ontrac4j.xml.TrackingShipment;
+import ontrac4j.schema.CodType;
+import ontrac4j.schema.Consignee;
+import ontrac4j.schema.Dim;
+import ontrac4j.schema.Event;
+import ontrac4j.schema.ShipmentRequest;
+import ontrac4j.schema.ShipmentResponse;
+import ontrac4j.schema.Shipper;
+import ontrac4j.schema.TrackingShipment;
 
 public class CreateShipmentTest extends BaseTest {
     @Test

@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;

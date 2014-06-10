@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +17,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ArrayOfRateQuote complex type.
+ * <p>Java class for ArrayOfZipCode complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ArrayOfRateQuote">
+ * &lt;complexType name="ArrayOfZipCode">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Rate" type="{}RateQuote" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Zip" type="{}ZipCode" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,41 +36,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfRateQuote", propOrder = {
-    "rates"
+@XmlType(name = "ArrayOfZipCode", propOrder = {
+    "zips"
 })
-public class ArrayOfRateQuote {
+public class ArrayOfZipCode {
 
-    @XmlElement(name = "Rate", nillable = true)
-    protected List<RateQuote> rates;
+    @XmlElement(name = "Zip", nillable = true)
+    protected List<ZipCode> zips;
 
     /**
-     * Gets the value of the rates property.
+     * Gets the value of the zips property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the rates property.
+     * This is why there is not a <CODE>set</CODE> method for the zips property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getRates().add(newItem);
+     *    getZips().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link RateQuote }
+     * {@link ZipCode }
      * 
      * 
      */
-    public List<RateQuote> getRates() {
-        if (rates == null) {
-            rates = new ArrayList<RateQuote>();
+    public List<ZipCode> getZips() {
+        if (zips == null) {
+            zips = new ArrayList<ZipCode>();
         }
-        return this.rates;
+        return this.zips;
     }
 
 }

@@ -6,32 +6,34 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for Shipper complex type.
+ * <p>Java class for Event complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Shipper">
+ * &lt;complexType name="Event">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
- *         &lt;element name="Name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Addr1" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *       &lt;sequence>
+ *         &lt;element name="Status" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Description" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="EventTime" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="Facility" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="City" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="State" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Zip" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Contact" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Phone" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,72 +42,127 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Shipper", propOrder = {
-
+@XmlType(name = "Event", propOrder = {
+    "status",
+    "description",
+    "eventTime",
+    "facility",
+    "city",
+    "state",
+    "zip"
 })
-public class Shipper {
+public class Event {
 
-    @XmlElement(name = "Name", required = true)
-    protected String name;
-    @XmlElement(name = "Addr1", required = true)
-    protected String addr1;
+    @XmlElement(name = "Status", required = true)
+    protected String status;
+    @XmlElement(name = "Description", required = true)
+    protected String description;
+    @XmlElement(name = "EventTime", required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar eventTime;
+    @XmlElement(name = "Facility", required = true)
+    protected String facility;
     @XmlElement(name = "City", required = true)
     protected String city;
     @XmlElement(name = "State", required = true)
     protected String state;
     @XmlElement(name = "Zip", required = true)
     protected String zip;
-    @XmlElement(name = "Contact", required = true)
-    protected String contact;
-    @XmlElement(name = "Phone", required = true)
-    protected String phone;
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the status property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
+    public String getStatus() {
+        return status;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the status property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setStatus(String value) {
+        this.status = value;
     }
 
     /**
-     * Gets the value of the addr1 property.
+     * Gets the value of the description property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAddr1() {
-        return addr1;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * Sets the value of the addr1 property.
+     * Sets the value of the description property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAddr1(String value) {
-        this.addr1 = value;
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    /**
+     * Gets the value of the eventTime property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getEventTime() {
+        return eventTime;
+    }
+
+    /**
+     * Sets the value of the eventTime property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setEventTime(XMLGregorianCalendar value) {
+        this.eventTime = value;
+    }
+
+    /**
+     * Gets the value of the facility property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFacility() {
+        return facility;
+    }
+
+    /**
+     * Sets the value of the facility property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFacility(String value) {
+        this.facility = value;
     }
 
     /**
@@ -178,54 +235,6 @@ public class Shipper {
      */
     public void setZip(String value) {
         this.zip = value;
-    }
-
-    /**
-     * Gets the value of the contact property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getContact() {
-        return contact;
-    }
-
-    /**
-     * Sets the value of the contact property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setContact(String value) {
-        this.contact = value;
-    }
-
-    /**
-     * Gets the value of the phone property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPhone() {
-        return phone;
-    }
-
-    /**
-     * Sets the value of the phone property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPhone(String value) {
-        this.phone = value;
     }
 
 }

@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,16 +15,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ZipCodeList complex type.
+ * <p>Java class for RateShipmentList complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ZipCodeList">
+ * &lt;complexType name="RateShipmentList">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Zips" type="{}ArrayOfZipCode" minOccurs="0"/>
+ *         &lt;element name="Shipments" type="{}ArrayOfRateShipment"/>
  *         &lt;element name="Error" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -35,39 +35,39 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ZipCodeList", propOrder = {
-    "zips",
+@XmlType(name = "RateShipmentList", propOrder = {
+    "shipments",
     "error"
 })
-public class ZipCodeList {
+public class RateShipmentList {
 
-    @XmlElement(name = "Zips")
-    protected ArrayOfZipCode zips;
+    @XmlElement(name = "Shipments", required = true)
+    protected ArrayOfRateShipment shipments;
     @XmlElement(name = "Error", required = true)
     protected String error;
 
     /**
-     * Gets the value of the zips property.
+     * Gets the value of the shipments property.
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfZipCode }
+     *     {@link ArrayOfRateShipment }
      *     
      */
-    public ArrayOfZipCode getZips() {
-        return zips;
+    public ArrayOfRateShipment getShipments() {
+        return shipments;
     }
 
     /**
-     * Sets the value of the zips property.
+     * Sets the value of the shipments property.
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfZipCode }
+     *     {@link ArrayOfRateShipment }
      *     
      */
-    public void setZips(ArrayOfZipCode value) {
-        this.zips = value;
+    public void setShipments(ArrayOfRateShipment value) {
+        this.shipments = value;
     }
 
     /**

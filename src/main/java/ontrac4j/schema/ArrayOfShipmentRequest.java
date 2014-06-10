@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +17,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ArrayOfShipmentUpdate complex type.
+ * <p>Java class for ArrayOfShipmentRequest complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ArrayOfShipmentUpdate">
+ * &lt;complexType name="ArrayOfShipmentRequest">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Shipment" type="{}ShipmentUpdate" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Shipment" type="{}ShipmentRequest" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,13 +36,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfShipmentUpdate", propOrder = {
+@XmlType(name = "ArrayOfShipmentRequest", propOrder = {
     "shipments"
 })
-public class ArrayOfShipmentUpdate {
+public class ArrayOfShipmentRequest {
 
-    @XmlElement(name = "Shipment", nillable = true)
-    protected List<ShipmentUpdate> shipments;
+    @XmlElement(name = "Shipment", required = true, nillable = true)
+    protected List<ShipmentRequest> shipments;
 
     /**
      * Gets the value of the shipments property.
@@ -62,13 +62,13 @@ public class ArrayOfShipmentUpdate {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ShipmentUpdate }
+     * {@link ShipmentRequest }
      * 
      * 
      */
-    public List<ShipmentUpdate> getShipments() {
+    public List<ShipmentRequest> getShipments() {
         if (shipments == null) {
-            shipments = new ArrayList<ShipmentUpdate>();
+            shipments = new ArrayList<ShipmentRequest>();
         }
         return this.shipments;
     }

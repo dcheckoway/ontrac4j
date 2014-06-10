@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,17 +15,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ShipmentResponseList complex type.
+ * <p>Java class for ShipmentRequestList complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ShipmentResponseList">
+ * &lt;complexType name="ShipmentRequestList">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Error" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Shipments" type="{}ArrayOfShipmentResponse"/>
+ *         &lt;element name="Shipments" type="{}ArrayOfShipmentRequest"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,50 +34,23 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ShipmentResponseList", propOrder = {
-    "error",
+@XmlType(name = "ShipmentRequestList", propOrder = {
     "shipments"
 })
-public class ShipmentResponseList {
+public class ShipmentRequestList {
 
-    @XmlElement(name = "Error", required = true)
-    protected String error;
     @XmlElement(name = "Shipments", required = true)
-    protected ArrayOfShipmentResponse shipments;
-
-    /**
-     * Gets the value of the error property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getError() {
-        return error;
-    }
-
-    /**
-     * Sets the value of the error property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setError(String value) {
-        this.error = value;
-    }
+    protected ArrayOfShipmentRequest shipments;
 
     /**
      * Gets the value of the shipments property.
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfShipmentResponse }
+     *     {@link ArrayOfShipmentRequest }
      *     
      */
-    public ArrayOfShipmentResponse getShipments() {
+    public ArrayOfShipmentRequest getShipments() {
         return shipments;
     }
 
@@ -87,10 +59,10 @@ public class ShipmentResponseList {
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfShipmentResponse }
+     *     {@link ArrayOfShipmentRequest }
      *     
      */
-    public void setShipments(ArrayOfShipmentResponse value) {
+    public void setShipments(ArrayOfShipmentRequest value) {
         this.shipments = value;
     }
 

@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 
-import ontrac4j.xml.ShipmentRequest;
-import ontrac4j.xml.ShipmentResponse;
-import ontrac4j.xml.ShipmentUpdate;
-import ontrac4j.xml.TrackingShipment;
-import ontrac4j.xml.ZipCode;
+import ontrac4j.schema.ShipmentRequest;
+import ontrac4j.schema.ShipmentResponse;
+import ontrac4j.schema.ShipmentUpdate;
+import ontrac4j.schema.TrackingShipment;
+import ontrac4j.schema.ZipCode;
 
 /**
  * Interface to the OnTrac shipping API

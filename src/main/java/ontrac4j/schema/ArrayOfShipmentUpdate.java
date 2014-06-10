@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +17,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ArrayOfRateShipment complex type.
+ * <p>Java class for ArrayOfShipmentUpdate complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ArrayOfRateShipment">
+ * &lt;complexType name="ArrayOfShipmentUpdate">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Shipment" type="{}RateShipment" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Shipment" type="{}ShipmentUpdate" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,13 +36,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfRateShipment", propOrder = {
+@XmlType(name = "ArrayOfShipmentUpdate", propOrder = {
     "shipments"
 })
-public class ArrayOfRateShipment {
+public class ArrayOfShipmentUpdate {
 
     @XmlElement(name = "Shipment", nillable = true)
-    protected List<RateShipment> shipments;
+    protected List<ShipmentUpdate> shipments;
 
     /**
      * Gets the value of the shipments property.
@@ -62,13 +62,13 @@ public class ArrayOfRateShipment {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link RateShipment }
+     * {@link ShipmentUpdate }
      * 
      * 
      */
-    public List<RateShipment> getShipments() {
+    public List<ShipmentUpdate> getShipments() {
         if (shipments == null) {
-            shipments = new ArrayList<RateShipment>();
+            shipments = new ArrayList<ShipmentUpdate>();
         }
         return this.shipments;
     }

@@ -8,8 +8,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import ontrac4j.xml.Event;
-import ontrac4j.xml.TrackingShipment;
+import ontrac4j.schema.Event;
+import ontrac4j.schema.TrackingShipment;
 
 public class TrackShipmentTest extends BaseTest {
     @Test(expected=IOException.class)

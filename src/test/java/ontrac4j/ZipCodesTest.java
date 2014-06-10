@@ -11,7 +11,7 @@ import java.util.Map;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 
-import ontrac4j.xml.ZipCode;
+import ontrac4j.schema.ZipCode;
 
 public class ZipCodesTest extends BaseTest {
     @Test

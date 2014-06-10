@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +17,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ArrayOfShipmentRequest complex type.
+ * <p>Java class for ArrayOfTrackingShipment complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ArrayOfShipmentRequest">
+ * &lt;complexType name="ArrayOfTrackingShipment">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Shipment" type="{}ShipmentRequest" maxOccurs="unbounded"/>
+ *         &lt;element name="Shipment" type="{}TrackingShipment" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,13 +36,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfShipmentRequest", propOrder = {
+@XmlType(name = "ArrayOfTrackingShipment", propOrder = {
     "shipments"
 })
-public class ArrayOfShipmentRequest {
+public class ArrayOfTrackingShipment {
 
-    @XmlElement(name = "Shipment", required = true, nillable = true)
-    protected List<ShipmentRequest> shipments;
+    @XmlElement(name = "Shipment", nillable = true)
+    protected List<TrackingShipment> shipments;
 
     /**
      * Gets the value of the shipments property.
@@ -62,13 +62,13 @@ public class ArrayOfShipmentRequest {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ShipmentRequest }
+     * {@link TrackingShipment }
      * 
      * 
      */
-    public List<ShipmentRequest> getShipments() {
+    public List<TrackingShipment> getShipments() {
         if (shipments == null) {
-            shipments = new ArrayList<ShipmentRequest>();
+            shipments = new ArrayList<TrackingShipment>();
         }
         return this.shipments;
     }

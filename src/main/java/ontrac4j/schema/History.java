@@ -6,7 +6,7 @@
 //
 
 
-package ontrac4j.xml;
+package ontrac4j.schema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +17,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ArrayOfZipCode complex type.
+ * <p>Java class for History complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ArrayOfZipCode">
+ * &lt;complexType name="History">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Zip" type="{}ZipCode" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Event" type="{}Event" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,41 +36,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfZipCode", propOrder = {
-    "zips"
+@XmlType(name = "History", propOrder = {
+    "events"
 })
-public class ArrayOfZipCode {
+public class History {
 
-    @XmlElement(name = "Zip", nillable = true)
-    protected List<ZipCode> zips;
+    @XmlElement(name = "Event", nillable = true)
+    protected List<Event> events;
 
     /**
-     * Gets the value of the zips property.
+     * Gets the value of the events property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the zips property.
+     * This is why there is not a <CODE>set</CODE> method for the events property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getZips().add(newItem);
+     *    getEvents().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ZipCode }
+     * {@link Event }
      * 
      * 
      */
-    public List<ZipCode> getZips() {
-        if (zips == null) {
-            zips = new ArrayList<ZipCode>();
+    public List<Event> getEvents() {
+        if (events == null) {
+            events = new ArrayList<Event>();
         }
-        return this.zips;
+        return this.events;
     }
 
 }

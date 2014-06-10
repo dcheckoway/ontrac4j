@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import ontrac4j.xml.ShipmentUpdate;
+import ontrac4j.schema.ShipmentUpdate;
 
 public class ShipmentUpdateTest extends BaseTest {
     @Test(expected=IOException.class)

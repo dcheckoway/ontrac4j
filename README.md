@@ -10,9 +10,9 @@ apisupport@ontrac.com
 Normal Usage:
 
     import ontrac4j.OnTrac;
-    import ontrac4j.xml.ShipmentRequest;
-    import ontrac4j.xml.ShipmentResponse;
-    import ontrac4j.xml.TrackingShipment;
+    import ontrac4j.schema.ShipmentRequest;
+    import ontrac4j.schema.ShipmentResponse;
+    import ontrac4j.schema.TrackingShipment;
     
     OnTrac ontrac = OnTrac.builder().account("12345").password("secret").build();
     
@@ -39,4 +39,4 @@ To use OnTrac's test site instead of production:
 
 JAXB/XML mappings were generated from the XSD files supplied by OnTrac by first commenting out the "Dim" type in OnTracRateResponse.xml (there were two, which caused duplicate issues with XJC), and then running:
 
-    xjc -extension xsd/simpleMode.xsd -d src/main/java -p ontrac4j.xml -verbose xsd/OnTrac*.xsd
+    xjc -extension xsd/simpleMode.xsd -d src/main/java -p ontrac4j.schema -verbose xsd/OnTrac*.xsd
