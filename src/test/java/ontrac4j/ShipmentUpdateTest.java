@@ -10,7 +10,7 @@ import org.junit.Test;
 import ontrac4j.schema.ShipmentUpdate;
 
 public class ShipmentUpdateTest extends BaseTest {
-    @Test(expected=IOException.class)
+    @Test(expected=OnTracException.class)
     public void invalidTrackingCode() throws IOException {
         ontrac().getShipmentUpdate("INVALIDTRACKINGNUMBER");
     }

@@ -12,7 +12,7 @@ import ontrac4j.schema.Event;
 import ontrac4j.schema.TrackingShipment;
 
 public class TrackShipmentTest extends BaseTest {
-    @Test(expected=IOException.class)
+    @Test(expected=OnTracException.class)
     public void invalidTrackingCode() throws IOException {
         ontrac().trackShipment("INVALIDTRACKINGNUMBER");
     }
