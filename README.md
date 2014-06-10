@@ -43,6 +43,8 @@ To use OnTrac's test site instead of production:
 
     OnTrac ontrac = OnTrac.builder().test().account("37").password("testpass").build();
 
+See the unit tests for simple examples of all API calls.
+
 JAXB/XML mappings were generated from the XSD files supplied by OnTrac by first commenting out the "Dim" type in OnTracRateResponse.xml (there were two, which caused duplicate issues with XJC), and then running:
 
     xjc -extension xsd/simpleMode.xsd -d src/main/java -p ontrac4j.schema -verbose xsd/OnTrac*.xsd
