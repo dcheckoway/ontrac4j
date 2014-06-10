@@ -47,4 +47,12 @@ public interface OnTrac {
      * @return the tracking info for the shipment
      */
     TrackingShipment trackShipment(String trackingNumber) throws IOException;
+
+    /**
+     * Builder convenience method to eliminate the need to import OnTracBuilder directly
+     * @return a new instance of a builder that can be used to build an OnTrac instance
+     */
+    static OnTracBuilder builder() {
+        return OnTracBuilder.create();
+    }
 }

@@ -5,7 +5,7 @@ public abstract class BaseTest {
     private static final String PASSWORD = System.getProperty("ontrac4j.password", "testpass");
     
     protected static OnTrac ontrac() {
-        return OnTracBuilder.create()
+        return OnTrac.builder()
             .test()
             .account(ACCOUNT)
             .password(PASSWORD)
