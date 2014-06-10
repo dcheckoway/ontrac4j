@@ -86,7 +86,7 @@ public class CreateShipmentTest extends BaseTest {
         assertNotNull(shipmentResponse.getTracking());
         assertEquals(uid, shipmentResponse.getUID());
         System.out.println("Created tracking #: " + shipmentResponse.getTracking());
-        
+
         TrackingShipment trackingShipment = ontrac().trackShipment(shipmentResponse.getTracking());
         assertNotNull(trackingShipment);
 

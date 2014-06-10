@@ -43,6 +43,8 @@ import ontrac4j.xml.ShipmentRequest;
 import ontrac4j.xml.ShipmentRequestList;
 import ontrac4j.xml.ShipmentResponse;
 import ontrac4j.xml.ShipmentResponseList;
+import ontrac4j.xml.ShipmentUpdate;
+import ontrac4j.xml.ShipmentUpdateList;
 import ontrac4j.xml.TrackingShipment;
 import ontrac4j.xml.TrackingShipmentList;
 import ontrac4j.xml.ZipCode;
@@ -62,8 +64,10 @@ public class OnTracImpl implements OnTrac {
     private static final ConcurrentMap<String,Unmarshaller> UNMARSHALLERS = new ConcurrentHashMap<>();
     private static final ConcurrentMap<String,Marshaller> MARSHALLERS = new ConcurrentHashMap<>();
 
-    private final HttpClient httpClient = HttpClientBuilder.create().build();
-    private final ObjectFactory objectFactory = new ObjectFactory();
+    private static final HttpClient HTTP_CLIENT = HttpClientBuilder.create().build();
+    
+    private static final ObjectFactory OBJECT_FACTORY = new ObjectFactory();
+    
     private final Config config;
     
     private OnTracImpl(Config config) {
@@ -98,7 +102,7 @@ public class OnTracImpl implements OnTrac {
         ShipmentRequestList shipmentRequestList = new ShipmentRequestList();
         shipmentRequestList.setShipments(new ArrayOfShipmentRequest());
         shipmentRequestList.getShipments().getShipments().add(shipmentRequest);
-        ShipmentResponseList shipmentResponseList = post(url, objectFactory.createOnTracShipmentRequest(shipmentRequestList), ShipmentResponseList.class);
+        ShipmentResponseList shipmentResponseList = post(url, OBJECT_FACTORY.createOnTracShipmentRequest(shipmentRequestList), ShipmentResponseList.class);
         if (StringUtils.isNotBlank(shipmentResponseList.getError())) {
             throw new GeneralException(shipmentResponseList.getError());
         } else if (CollectionUtils.isEmpty(shipmentResponseList.getShipments().getShipments())) {
@@ -109,6 +113,24 @@ public class OnTracImpl implements OnTrac {
                 throw new GeneralException(shipmentResponse.getError());
             } else {
                 return shipmentResponse;
+            }
+        }
+    }
+    
+    /** {@inheritDoc} */
+    public ShipmentUpdate getShipmentUpdate(String trackingNumber) throws IOException {
+        String url = "/V1/" + config.getAccount() + "/shipments?pw=" + config.getPassword() + "&requestType=details&tn=" + trackingNumber;
+        ShipmentUpdateList shipmentUpdateList = get(url, ShipmentUpdateList.class);
+        if (StringUtils.isNotBlank(shipmentUpdateList.getError())) {
+            throw new GeneralException(shipmentUpdateList.getError());
+        } else if (CollectionUtils.isEmpty(shipmentUpdateList.getShipments().getShipments())) {
+            throw new GeneralException("Shipment not found: " + trackingNumber);
+        } else {
+            ShipmentUpdate shipmentUpdate = shipmentUpdateList.getShipments().getShipments().get(0);
+            if (StringUtils.isNotBlank(shipmentUpdate.getError())) {
+                throw new GeneralException(shipmentUpdate.getError());
+            } else {
+                return shipmentUpdate;
             }
         }
     }
@@ -160,7 +182,7 @@ public class OnTracImpl implements OnTrac {
             
             HttpEntity httpEntity = null;
             try {
-                HttpResponse httpResponse = httpClient.execute(httpRequestBase);
+                HttpResponse httpResponse = HTTP_CLIENT.execute(httpRequestBase);
                 httpEntity = httpResponse.getEntity();
                 StatusLine statusLine = httpResponse.getStatusLine();
                 int statusCode = statusLine.getStatusCode();

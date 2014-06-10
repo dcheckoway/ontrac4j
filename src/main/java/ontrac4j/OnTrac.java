@@ -7,6 +7,7 @@ import java.util.Map;
 import ontrac4j.impl.OnTracImpl;
 import ontrac4j.xml.ShipmentRequest;
 import ontrac4j.xml.ShipmentResponse;
+import ontrac4j.xml.ShipmentUpdate;
 import ontrac4j.xml.TrackingShipment;
 import ontrac4j.xml.ZipCode;
 
@@ -35,9 +36,16 @@ public interface OnTrac {
     ShipmentResponse createShipment(ShipmentRequest shipmentRequest) throws IOException;
 
     /**
+     * Get updated details for a shipment
+     * @param trackingNumber the tracking number of the shipment whose details are desired
+     * @return the updated shipment details
+     */
+    ShipmentUpdate getShipmentUpdate(String trackingNumber) throws IOException;
+
+    /**
      * Track a shipment
      * @param trackingNumber the tracking number of the shipment to track
-     * @return the tracking details for the shipment
+     * @return the tracking info for the shipment
      */
     TrackingShipment trackShipment(String trackingNumber) throws IOException;
 
