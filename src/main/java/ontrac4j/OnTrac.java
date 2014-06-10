@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 
+import ontrac4j.schema.RateQuote;
+import ontrac4j.schema.RateShipment;
 import ontrac4j.schema.ShipmentRequest;
 import ontrac4j.schema.ShipmentResponse;
 import ontrac4j.schema.ShipmentUpdate;
@@ -14,19 +16,6 @@ import ontrac4j.schema.ZipCode;
  * Interface to the OnTrac shipping API
  */
 public interface OnTrac {
-    /**
-     * Get all zip codes
-     * @return all zip codes in the system
-     */
-    Map<String,ZipCode> getZipCodes() throws IOException;
-
-    /**
-     * Get all zip codes updated since a specific date
-     * @param lastUpdate the date of the last zip request made to the OnTrac system
-     * @return only zips that have been added or changed since lastUpdate
-     */
-    Map<String,ZipCode> getZipCodes(Date lastUpdate) throws IOException;
-
     /**
      * Create a new shipment
      * @param shipmentRequest the shipment request details to create
@@ -48,6 +37,34 @@ public interface OnTrac {
      */
     TrackingShipment trackShipment(String trackingNumber) throws IOException;
 
+    /**
+     * Get a rate quote for all available services for a shipment
+     * @param rateShipment the RateShipment object conveying the shipment attributes
+     * @return a map of rate quotes by service code (i.e. S = Sunrise, G = Gold, etc.)
+     */
+    Map<String,RateQuote> getRateQuote(RateShipment rateShipment) throws IOException;
+
+    /**
+     * Get a rate quote for a specific service for a shipment
+     * @param rateShipment the RateShipment object conveying the shipment attributes
+     * @param service the OnTrac service code
+     * @return a map of rate quotes by service code (i.e. S = Sunrise, G = Gold, etc.)
+     */
+    Map<String,RateQuote> getRateQuote(RateShipment rateShipment, String service) throws IOException;
+
+    /**
+     * Get all zip codes
+     * @return a map by zip code of all zip codes in the system
+     */
+    Map<String,ZipCode> getZipCodes() throws IOException;
+
+    /**
+     * Get all zip codes updated since a specific date
+     * @param lastUpdate the date of the last zip request made to the OnTrac system
+     * @return a map by zip code of only zips that have been added or changed since lastUpdate
+     */
+    Map<String,ZipCode> getZipCodes(Date lastUpdate) throws IOException;
+    
     /**
      * Builder convenience method to eliminate the need to import OnTracBuilder directly
      * @return a new instance of a builder that can be used to build an OnTrac instance
