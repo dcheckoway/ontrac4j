@@ -13,6 +13,7 @@
     <commons-collections.version>3.2.1</commons-collections.version>
     <org.apache.commons.commons-lang3.version>3.3.2</org.apache.commons.commons-lang3.version>
     <org.apache.maven.plugins.maven-compiler-plugin.version>3.0</org.apache.maven.plugins.maven-compiler-plugin.version>
+    <org.apache.httpcomponents.httpclient.version>4.3.4</org.apache.httpcomponents.httpclient.version>
   </properties>
   
   <scm>
@@ -38,6 +39,13 @@
       <scope>compile</scope>
     </dependency>
       
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>${org.apache.httpcomponents.httpclient.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    
     <!-- ============================ RUNTIME ============================== -->
     
     <!-- ============================ PROVIDED ============================== -->

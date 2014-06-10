@@ -50,6 +50,10 @@ public interface OnTrac {
         Builder rootUrl(String rootUrl);
         Builder test();
         Builder production();
+        Builder connectTimeout(int connectTimeout);
+        Builder socketTimeout(int socketTimeout);
+        Builder maxRetries(int maxRetries);
+        Builder sleepBetweenRetries(long sleepBetweenRetries);
         OnTrac build();
     }
 
