@@ -5,7 +5,7 @@ import org.junit.Test;
 public class BuilderTest {
     @Test
     public void buildTestClient() {
-        OnTrac ontrac = OnTrac.builder()
+        OnTrac ontrac = OnTracBuilder.create()
             .test()
             .account("37")
             .password("testpass")
@@ -14,7 +14,7 @@ public class BuilderTest {
     
     @Test
     public void buildProductionClient() {
-        OnTrac ontrac = OnTrac.builder()
+        OnTrac ontrac = OnTracBuilder.create()
             .account("37")
             .password("testpass")
             .build();

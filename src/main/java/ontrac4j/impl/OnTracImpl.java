@@ -53,13 +53,7 @@ import ontrac4j.xml.ZipCodeList;
 public class OnTracImpl implements OnTrac {
     private static final Logger LOG = Logger.getLogger(OnTracImpl.class.getName());
     
-    private static final String TEST_ROOT_URL = "https://www.shipontrac.net/OnTracTestWebServices/OnTracServices.svc";
-    private static final String PRODUCTION_ROOT_URL = "https://www.shipontrac.net/OnTracWebServices/OnTracServices.svc";
-
     private static final FastDateFormat LAST_UPDATE_FORMAT = FastDateFormat.getInstance("yyyy-MM-dd");
-
-    private static final int DEFAULT_MAX_RETRIES = 5;
-    private static final long DEFAULT_SLEEP_BETWEEN_RETRIES = 3000;
 
     private static final ConcurrentMap<String,Unmarshaller> UNMARSHALLERS = new ConcurrentHashMap<>();
     private static final ConcurrentMap<String,Marshaller> MARSHALLERS = new ConcurrentHashMap<>();
@@ -70,7 +64,7 @@ public class OnTracImpl implements OnTrac {
     
     private final Config config;
     
-    private OnTracImpl(Config config) {
+    public OnTracImpl(Config config) {
         this.config = config;
     }
 
@@ -263,116 +257,6 @@ public class OnTracImpl implements OnTrac {
         
         private GeneralException(String message) {
             super(message);
-        }
-    }
-
-    private static final class Config {
-        private String account;
-        private String password;
-        private String rootUrl = PRODUCTION_ROOT_URL;
-        private int connectTimeout = -1;
-        private int socketTimeout = -1;
-        private int maxRetries = DEFAULT_MAX_RETRIES;
-        private long sleepBetweenRetries = DEFAULT_SLEEP_BETWEEN_RETRIES;
-
-        public String getAccount() {
-            return account;
-        }
-        public void setAccount(String account) {
-            this.account = account;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public String getRootUrl() {
-            return rootUrl;
-        }
-        public void setRootUrl(String rootUrl) {
-            this.rootUrl = rootUrl;
-        }
-
-        public int getConnectTimeout() {
-            return connectTimeout;
-        }
-        public void setConnectTimeout(int connectTimeout) {
-            this.connectTimeout = connectTimeout;
-        }
-
-        public int getSocketTimeout() {
-            return socketTimeout;
-        }
-        public void setSocketTimeout(int socketTimeout) {
-            this.socketTimeout = socketTimeout;
-        }
-
-        public int getMaxRetries() {
-            return maxRetries;
-        }
-        public void setMaxRetries(int maxRetries) {
-            this.maxRetries = maxRetries;
-        }
-
-        public long getSleepBetweenRetries() {
-            return sleepBetweenRetries;
-        }
-        public void setSleepBetweenRetries(long sleepBetweenRetries) {
-            this.sleepBetweenRetries = sleepBetweenRetries;
-        }
-    }
-    
-    public static final class Builder implements OnTrac.Builder {
-        private final Config config = new Config();
-        
-        public Builder account(String account) {
-            config.setAccount(account);
-            return this;
-        }
-
-        public Builder password(String password) {
-            config.setPassword(password);
-            return this;
-        }
-
-        public Builder rootUrl(String rootUrl) {
-            config.setRootUrl(rootUrl);
-            return this;
-        }
-
-        public Builder test() {
-            return rootUrl(TEST_ROOT_URL);
-        }
-
-        public Builder production() {
-            return rootUrl(PRODUCTION_ROOT_URL);
-        }
-
-        public Builder connectTimeout(int connectTimeout) {
-            config.setConnectTimeout(connectTimeout);
-            return this;
-        }
-        
-        public Builder socketTimeout(int socketTimeout) {
-            config.setSocketTimeout(socketTimeout);
-            return this;
-        }
-
-        public Builder maxRetries(int maxRetries) {
-            config.setMaxRetries(maxRetries);
-            return this;
-        }
-        
-        public Builder sleepBetweenRetries(long sleepBetweenRetries) {
-            config.setSleepBetweenRetries(sleepBetweenRetries);
-            return this;
-        }
-        
-        public OnTrac build() {
-            return new OnTracImpl(config);
         }
     }
 }

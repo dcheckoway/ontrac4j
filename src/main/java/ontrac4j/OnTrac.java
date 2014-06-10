@@ -48,27 +48,4 @@ public interface OnTrac {
      * @return the tracking info for the shipment
      */
     TrackingShipment trackShipment(String trackingNumber) throws IOException;
-
-    /**
-     * Builder interface used to build OnTrac instances
-     */
-    static interface Builder {
-        Builder account(String account);
-        Builder password(String password);
-        Builder rootUrl(String rootUrl);
-        Builder test();
-        Builder production();
-        Builder connectTimeout(int connectTimeout);
-        Builder socketTimeout(int socketTimeout);
-        Builder maxRetries(int maxRetries);
-        Builder sleepBetweenRetries(long sleepBetweenRetries);
-        OnTrac build();
-    }
-
-    /**
-     * @return a builder instance that can be used to build an OnTrac instance
-     */
-    static Builder builder() {
-        return new OnTracImpl.Builder();
-    }
 }
