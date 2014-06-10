@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import ontrac4j.xml.Event;
 import ontrac4j.xml.TrackingShipment;
 
 public class TrackShipmentTest extends BaseTest {
@@ -22,5 +23,9 @@ public class TrackShipmentTest extends BaseTest {
         assertNotNull(trackingShipment);
         assertTrue(trackingShipment.isDelivered());
         assertEquals("ADAM ZBAR", trackingShipment.getName());
+
+        for (Event event : trackingShipment.getEvents().getEvents()) {
+            System.out.println("EVENT: status=" + event.getStatus() + ", description=" + event.getDescription() + ", eventTime=" + event.getEventTime() + ", facility=" + event.getFacility() + ", city=" + event.getCity() + ", state=" + event.getState());
+        }
     }
 }

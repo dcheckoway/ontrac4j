@@ -15,9 +15,11 @@ import org.junit.Test;
 import ontrac4j.xml.CodType;
 import ontrac4j.xml.Consignee;
 import ontrac4j.xml.Dim;
+import ontrac4j.xml.Event;
 import ontrac4j.xml.ShipmentRequest;
 import ontrac4j.xml.ShipmentResponse;
 import ontrac4j.xml.Shipper;
+import ontrac4j.xml.TrackingShipment;
 
 public class CreateShipmentTest extends BaseTest {
     @Test
@@ -84,5 +86,12 @@ public class CreateShipmentTest extends BaseTest {
         assertNotNull(shipmentResponse.getTracking());
         assertEquals(uid, shipmentResponse.getUID());
         System.out.println("Created tracking #: " + shipmentResponse.getTracking());
+        
+        TrackingShipment trackingShipment = ontrac().trackShipment(shipmentResponse.getTracking());
+        assertNotNull(trackingShipment);
+
+        for (Event event : trackingShipment.getEvents().getEvents()) {
+            System.out.println("EVENT: status=" + event.getStatus() + ", description=" + event.getDescription() + ", eventTime=" + event.getEventTime() + ", facility=" + event.getFacility() + ", city=" + event.getCity() + ", state=" + event.getState());
+        }
     }
 }
