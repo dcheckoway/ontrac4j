@@ -1,11 +1,17 @@
 ontrac4j
 ========
 
-Java client library for use with OnTrac's shipping API
-
-http://www.ontrac.com
-
+**Java client library for use with OnTrac's shipping API**  
+http://www.ontrac.com  
 apisupport@ontrac.com
+
+This library takes Java classes generated from the XSD schema files provided by OnTrac
+and pairs them with a simple API for interacting with OnTrac's web services.  The schema
+classes are a bit clunky (particularly interacting with lists), but they've been left
+as is for two reasons:
+
+1. Names of fields match the schema (and OnTrac's documentation) exactly.
+2. Less hands-on maintenance down the line if the schema changes.
 
 Normal Usage:
 
