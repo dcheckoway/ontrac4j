@@ -157,41 +157,43 @@ public class Client {
         Object target = object instanceof JAXBElement ? ((JAXBElement)object).getValue() : object;
         if (target == null) {
             return;
-        }
-        Class<?> clazz = target.getClass();
-        XmlType xmlType = clazz.getDeclaredAnnotation(XmlType.class);
-        if (xmlType != null) {
-            for (Field field : clazz.getDeclaredFields()) {
-                XmlElement xmlElement = field.getAnnotation(XmlElement.class);
-                if (xmlElement != null) {
-                    if (!field.isAccessible()) {
-                        field.setAccessible(true);
-                    }
-                    Object fieldValue;
-                    try {
-                        fieldValue = field.get(target);
-                    } catch (IllegalAccessException e) {
-                        throw new IllegalStateException("Failed to get value of " + field.getName() + " on  " + clazz.getName(), e);
-                    }
-
-                    if (fieldValue == null && xmlElement.required()) {
-                        LOG.fine("Setting required field \"" + field.getName() + "\" on " + clazz.getName() + " to default instance of " + field.getType().getName());
-                        try {
-                            fieldValue = field.getType().newInstance();
-                            field.set(target, fieldValue);
-                        } catch (IllegalAccessException | InstantiationException e) {
-                            throw new IllegalStateException("Failed to set default instance of " + field.getType().getName() + " as \"" + field.getName() + "\" on  " + clazz.getName(), e);
-                        }
-                    }
-                    
-                    // Walk down the hierarchy
-                    populateDefaultValues(fieldValue);
-                }
-            }
         } else if (target instanceof Collection) {
-            for (Object element : ((Collection<?>)target)) {
+            for (Object element : (Collection<?>)target) {
                 populateDefaultValues(element);
             }
+        } else if (target.getClass().getDeclaredAnnotation(XmlType.class) != null) {
+            for (Field field : target.getClass().getDeclaredFields()) {
+                XmlElement xmlElement = field.getAnnotation(XmlElement.class);
+                if (xmlElement != null) {
+                    checkXmlElementFieldValue(target, field, xmlElement);
+                }
+            }
         }
+    }
+
+    static void checkXmlElementFieldValue(Object target, Field field, XmlElement xmlElement) {
+        if (!field.isAccessible()) {
+            field.setAccessible(true);
+        }
+        
+        Object fieldValue;
+        try {
+            fieldValue = field.get(target);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException("Failed to get value of " + field.getName() + " on  " + target.getClass().getName(), e);
+        }
+
+        if (fieldValue == null && xmlElement.required()) {
+            LOG.fine("Setting required field \"" + field.getName() + "\" on " + target.getClass().getName() + " to default instance of " + field.getType().getName());
+            try {
+                fieldValue = field.getType().newInstance();
+                field.set(target, fieldValue);
+            } catch (IllegalAccessException | InstantiationException e) {
+                throw new IllegalStateException("Failed to set default instance of " + field.getType().getName() + " as \"" + field.getName() + "\" on  " + target.getClass().getName(), e);
+            }
+        }
+        
+        // Walk the hierarchy
+        populateDefaultValues(fieldValue);
     }
 }
