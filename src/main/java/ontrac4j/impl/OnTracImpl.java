@@ -18,6 +18,8 @@ import ontrac4j.OnTrac;
 import ontrac4j.schema.ArrayOfShipmentRequest;
 import ontrac4j.schema.Dim;
 import ontrac4j.schema.ObjectFactory;
+import ontrac4j.schema.PickupRequest;
+import ontrac4j.schema.PickupResponse;
 import ontrac4j.schema.RateQuote;
 import ontrac4j.schema.RateShipment;
 import ontrac4j.schema.RateShipmentList;
@@ -69,24 +71,6 @@ public class OnTracImpl implements OnTrac {
             }
         }
     }
-    
-    /** {@inheritDoc} */
-    public ShipmentUpdate getShipmentUpdate(String trackingNumber) throws IOException {
-        String url = VERSION_PATH + config.getAccount() + "/shipments?pw=" + config.getPassword() + "&requestType=details&tn=" + trackingNumber;
-        ShipmentUpdateList shipmentUpdateList = client.get(url, ShipmentUpdateList.class);
-        if (StringUtils.isNotBlank(shipmentUpdateList.getError())) {
-            throw new GeneralException(shipmentUpdateList.getError());
-        } else if (CollectionUtils.isEmpty(shipmentUpdateList.getShipments().getShipments())) {
-            throw new GeneralException("Shipment not found: " + trackingNumber);
-        } else {
-            ShipmentUpdate shipmentUpdate = shipmentUpdateList.getShipments().getShipments().get(0);
-            if (StringUtils.isNotBlank(shipmentUpdate.getError())) {
-                throw new GeneralException(shipmentUpdate.getError());
-            } else {
-                return shipmentUpdate;
-            }
-        }
-    }
 
     /** {@inheritDoc} */
     public TrackingShipment trackShipment(String trackingNumber) throws IOException {
@@ -102,6 +86,24 @@ public class OnTracImpl implements OnTrac {
                 throw new GeneralException(trackingShipment.getError());
             } else {
                 return trackingShipment;
+            }
+        }
+    }
+    
+    /** {@inheritDoc} */
+    public ShipmentUpdate getShipmentUpdate(String trackingNumber) throws IOException {
+        String url = VERSION_PATH + config.getAccount() + "/shipments?pw=" + config.getPassword() + "&requestType=details&tn=" + trackingNumber;
+        ShipmentUpdateList shipmentUpdateList = client.get(url, ShipmentUpdateList.class);
+        if (StringUtils.isNotBlank(shipmentUpdateList.getError())) {
+            throw new GeneralException(shipmentUpdateList.getError());
+        } else if (CollectionUtils.isEmpty(shipmentUpdateList.getShipments().getShipments())) {
+            throw new GeneralException("Shipment not found: " + trackingNumber);
+        } else {
+            ShipmentUpdate shipmentUpdate = shipmentUpdateList.getShipments().getShipments().get(0);
+            if (StringUtils.isNotBlank(shipmentUpdate.getError())) {
+                throw new GeneralException(shipmentUpdate.getError());
+            } else {
+                return shipmentUpdate;
             }
         }
     }
@@ -135,6 +137,17 @@ public class OnTracImpl implements OnTrac {
         }
     }
 
+    /** {@inheritDoc} */
+    public String schedulePickup(PickupRequest pickupRequest) throws IOException {
+        String url = VERSION_PATH + config.getAccount() + "/pickups?pw=" + config.getPassword();
+        PickupResponse pickupResponse = client.post(url, OBJECT_FACTORY.createOnTracPickupRequest(pickupRequest), PickupResponse.class);
+        if (StringUtils.isNotBlank(pickupResponse.getError())) {
+            throw new GeneralException(pickupResponse.getError());
+        } else {
+            return pickupResponse.getTracking();
+        }
+    }
+    
     /** {@inheritDoc} */
     public Map<String,ZipCode> getZipCodes() throws IOException {
         return getZipCodes(null);

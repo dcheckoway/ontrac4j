@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 
+import ontrac4j.schema.PickupRequest;
 import ontrac4j.schema.RateQuote;
 import ontrac4j.schema.RateShipment;
 import ontrac4j.schema.ShipmentRequest;
@@ -24,18 +25,18 @@ public interface OnTrac {
     ShipmentResponse createShipment(ShipmentRequest shipmentRequest) throws IOException;
 
     /**
-     * Get updated details for a shipment
-     * @param trackingNumber the tracking number of the shipment whose details are desired
-     * @return the updated shipment details
-     */
-    ShipmentUpdate getShipmentUpdate(String trackingNumber) throws IOException;
-
-    /**
      * Track a shipment
      * @param trackingNumber the tracking number of the shipment to track
      * @return the tracking info for the shipment
      */
     TrackingShipment trackShipment(String trackingNumber) throws IOException;
+
+    /**
+     * Get updated details for a shipment
+     * @param trackingNumber the tracking number of the shipment whose details are desired
+     * @return the updated shipment details
+     */
+    ShipmentUpdate getShipmentUpdate(String trackingNumber) throws IOException;
 
     /**
      * Get a rate quote for all available services for a shipment
@@ -51,6 +52,13 @@ public interface OnTrac {
      * @return a map of rate quotes by service code (i.e. S = Sunrise, G = Gold, etc.)
      */
     Map<String,RateQuote> getRateQuote(RateShipment rateShipment, String service) throws IOException;
+
+    /**
+     * Schedule an an OnTrac driver to make a pickup
+     * @param pickupRequest details pertaining to the pickup being requested
+     * @return the tracking number for the scheduled pickup
+     */
+    String schedulePickup(PickupRequest pickupRequest) throws IOException;
 
     /**
      * Get all zip codes
