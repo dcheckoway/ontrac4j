@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 
-import ontrac4j.impl.OnTracImpl;
 import ontrac4j.xml.ShipmentRequest;
 import ontrac4j.xml.ShipmentResponse;
 import ontrac4j.xml.ShipmentUpdate;
